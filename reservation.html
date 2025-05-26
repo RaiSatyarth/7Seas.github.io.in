@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>7Seas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/fancybox.min.css">
+    
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* Custom styles for payment modal */
+      .payment-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+      }
+      .payment-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+      .close-payment {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close-payment:hover {
+        color: black;
+      }
+      .payment-row {
+        display: flex;
+        margin: 0 -15px;
+      }
+      .payment-col {
+        padding: 0 15px;
+        flex: 1;
+      }
+      .payment-card-icons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      .payment-card-icons img {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!-- Header and other sections remain the same until the reservation form -->
+
+    <section class="section contact-section" id="next">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+            
+            <form id="reservationForm" class="bg-white p-md-5 p-4 mb-5 border">
+              <!-- Your existing reservation form fields here -->
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label class="text-black font-weight-bold" for="name">Name</label>
+                  <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label class="text-black font-weight-bold" for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" class="form-control" maxlength="10" pattern="[0-9]{10}" title="Please enter exactly 10 digits (no spaces or dashes)" required>
+                  <small class="text-muted">10 digits only (e.g., 9876543210)</small>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <label class="text-black font-weight-bold" for="email">Email</label>
+                  <input type="email" id="email" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label class="text-black font-weight-bold" for="checkin_date">Date Check In</label>
+                  <input type="text" id="checkin_date" class="form-control" required>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label class="text-black font-weight-bold" for="checkout_date">Date Check Out</label>
+                  <input type="text" id="checkout_date" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label for="adults" class="font-weight-bold text-black">Adults</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="adults" class="form-control" required>
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4+</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="children" class="font-weight-bold text-black">Children</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                    <select name="" id="children" class="form-control">
+                      <option value="">1</option>
+                      <option value="">2</option>
+                      <option value="">3</option>
+                      <option value="">4+</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-md-12 form-group">
+                  <label class="text-black font-weight-bold" for="message">Notes</label>
+                  <textarea name="message" id="message" class="form-control" cols="30" rows="8"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <button type="button" id="reserveNowBtn" class="btn btn-primary text-white py-3 px-5 font-weight-bold">Reserve Now</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="row">
+              <div class="col-md-10 ml-auto contact-info">
+                <p><span class="d-block">Address:</span> <span class="text-black"> 7, Ocean View Road, Juhu Beach, Mumbai 400049, India</span></p>
+                <p><span class="d-block">Phone:</span> <span class="text-black"> +91 22 2612 3456</span></p>
+                <p><span class="d-block">Email:</span> <span class="text-black"> info@7seas.com</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Gateway Modal -->
+    <div id="paymentModal" class="payment-modal">
+      <div class="payment-content">
+        <span class="close-payment">&times;</span>
+        <h2 class="mb-4">Complete Your Reservation</h2>
+        <form id="paymentForm">
+          <div class="form-group">
+            <label for="cardName">Name on Card</label>
+            <input type="text" class="form-control" id="cardName" required>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+          </div>
+          <div class="payment-row">
+            <div class="payment-col">
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+              </div>
+            </div>
+            <div class="payment-col">
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+              </div>
+            </div>
+          </div>
+          <div class="payment-card-icons">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" alt="Visa">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg" alt="Mastercard">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple Pay">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/paypal/paypal-original.svg" alt="PayPal">
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount to Pay</label>
+            <input type="text" class="form-control" id="amount" value="Rs. 8000" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block py-3">Pay Now & Complete Reservation</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Rest of your HTML remains the same -->
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    
+    <script src="js/aos.js"></script>
+    
+    <script src="js/bootstrap-datepicker.js"></script> 
+    <script src="js/jquery.timepicker.min.js"></script> 
+
+    <script>
+      // Additional validation for phone number
+      document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
+        
+        phoneInput.addEventListener('input', function() {
+          // Remove any non-digit characters
+          this.value = this.value.replace(/\D/g, '');
+          
+          // Truncate to 10 digits if needed
+          if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10);
+          }
+        });
+        
+        // Payment Modal Handling
+        const modal = document.getElementById("paymentModal");
+        const btn = document.getElementById("reserveNowBtn");
+        const span = document.getElementsByClassName("close-payment")[0];
+        const reservationForm = document.getElementById("reservationForm");
+        const paymentForm = document.getElementById("paymentForm");
+
+        btn.onclick = function() {
+          if (reservationForm.checkValidity()) {
+            modal.style.display = "block";
+          } else {
+            reservationForm.reportValidity();
+          }
+        }
+
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+        // Payment form validation
+        paymentForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validate card number (simple Luhn check)
+          const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+          if (!luhnCheck(cardNumber)) {
+            alert('Please enter a valid credit card number');
+            return;
+          }
+          
+          // Validate expiry date
+          const expiryDate = document.getElementById('expiryDate').value;
+          if (!/^(0[1-9]|1[0-2])\/?([0-9]{2})$/.test(expiryDate)) {
+            alert('Please enter a valid expiry date in MM/YY format');
+            return;
+          }
+          
+          // Validate CVV
+          const cvv = document.getElementById('cvv').value;
+          if (!/^\d{3,4}$/.test(cvv)) {
+            alert('Please enter a valid CVV (3 or 4 digits)');
+            return;
+          }
+          
+          // If all validations pass
+          alert('Payment successful! Your reservation is confirmed.');
+          modal.style.display = "none";
+          reservationForm.reset();
+        });
+
+        // Simple Luhn algorithm check
+        function luhnCheck(cardNo) {
+          if (!/^\d+$/.test(cardNo)) return false;
+          
+          let nCheck = 0, nDigit = 0, bEven = false;
+          cardNo = cardNo.toString();
+          
+          for (let n = cardNo.length - 1; n >= 0; n--) {
+            const cDigit = cardNo.charAt(n);
+            nDigit = parseInt(cDigit, 10);
+            
+            if (bEven) {
+              if ((nDigit *= 2) > 9) nDigit -= 9;
+            }
+            
+            nCheck += nDigit;
+            bEven = !bEven;
+          }
+          
+          return (nCheck % 10) == 0;
+        }
+      });
+    </script>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
